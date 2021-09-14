@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee-List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!--FONT AWESOME SCRIPT!!!-->
+    <!--https://fontawesome.com/kits/111ad7ba2a/use?welcome=yes-->
+    <!--<script src="https://kit.fontawesome.com/111ad7ba2a.js" crossorigin="anonymous"></script>-->
+</head>
+<body>
+<h1 class="display-4 text-center">Employee Management System</h1>
+<div class="container">
+<table class="table caption table-bordered table-hover table-striped">
+<!--    LINK TO MAPPINGS!!!-->
+<!--    HTML to MAPPINGS to VIEWNAMES to HTML-->
+    <a th:href="@{/employees/add}" class="btn btn-success mb-3">
+        Add Employee
+    </a>
+
+    <caption>List of employees</caption>
+    <a></a>
+    <thead class="thead-dark">
+    <th>#</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Date of Birth</th>
+    <th>Email</th>
+    <th>Created date</th>
+    <th>Updated date</th>
+    <th colspan="2" class="text-center">Actions</th>
+    </thead>
+    <tbody >
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"/>
+        <td th:text="${employee.firstName}"/>
+        <td th:text="${employee.lastName}"/>
+        <td th:text="${employee.dateOfBirth}"/>
+        <td th:text="${employee.email}"/>
+        <td th:text="${employee.createdDate}"/>
+        <td th:text="${employee.updatedDate}"/>
+        <td>
+            <div class="btn-group d-flex flex-row justify-content-center" role="group">
+                <!--                APPENDS TO URL '?employeeId=.....-->
+                <a th:href="@{/employees/update(employeeId=${employee.id})}" class="btn btn-primary">Update</a>
+                <!--                APPENDS TO URL '?employeeId=.....-->
+                <a th:href="@{/employees/delete(employeeId=${employee.id})}" class="btn btn-danger"
+                onclick="if(!(confirm('Are you sure you want to delete this employee?'))) return false">
+                    Delete
+                </a>
+            </div>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+</html>
